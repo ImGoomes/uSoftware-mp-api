@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>usoftware_mp_lib</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Helper\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.8" />
+    <PackageReference Include="RepositoryHelpers" Version="2.4.0" />
+  </ItemGroup>
+
+</Project>

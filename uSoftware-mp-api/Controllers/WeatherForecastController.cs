@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using usoftware_mp_lib.Model;
 
 namespace uSoftware_mp_api.Controllers
 {
@@ -24,14 +25,14 @@ namespace uSoftware_mp_api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<Usuarios> Get()
         {
             var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return Enumerable.Range(1, 5).Select(index => new Usuarios
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
+                ID = rng.Next(-20, 55),
+                Nome = "TESTE FOI",
+                Login = "TESTE FOI"
             })
             .ToArray();
         }
