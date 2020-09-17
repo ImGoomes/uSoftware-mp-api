@@ -11,12 +11,6 @@ namespace usoftware_mp_lib.Repository
     {
         public UsuariosRepository(IConfiguration configuration) : base(configuration) { }
 
-        public static byte[] StringToByteArray(string strValue)
-        {
-            System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
-            return encoding.GetBytes(strValue);
-        }
-
         public Usuarios LoginUsuario(Usuarios item)
         {
             var customQuery = "SELECT " +

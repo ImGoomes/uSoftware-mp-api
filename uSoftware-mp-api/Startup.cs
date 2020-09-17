@@ -35,6 +35,7 @@ namespace uSoftware_mp_api
             services.AddControllers();
 
             services.AddScoped<UsuariosRepository>();
+            services.AddScoped<PromotoriasRepository>();
 
             // Configurando o JWT
             #region Jwt
