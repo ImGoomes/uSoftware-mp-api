@@ -199,6 +199,29 @@ ALTER TABLE [dbo].[Uploads]  WITH CHECK ADD  CONSTRAINT [FK_Uploads_Atendimentos
 REFERENCES [dbo].[Atendimentos] ([ID])
 GO
 
+--######################################################################################
+----------------------------------------------------------------------------[ Opinioes ]###
+--######################################################################################
+
+CREATE TABLE [dbo].[Opnioes](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CidadaoID] INT NOT NULL,
+	[PromotoriaID] INT NOT NULL,
+	[Descricao] [varchar](MAX) NOT NULL,
+	[CriadoEm] [datetime] NOT NULL DEFAULT GETDATE(),
+	[RemovidoEm] [datetime] NULL,
+	CONSTRAINT [PK_OpniaoID] PRIMARY KEY CLUSTERED (ID)
+) 
+GO
+
+ALTER TABLE [dbo].[Opnioes]  WITH CHECK ADD  CONSTRAINT [FK_Opnioes_Cidadaos] FOREIGN KEY([CidadaoID])
+REFERENCES [dbo].[Cidadaos] ([ID])
+GO
+
+ALTER TABLE [dbo].[Opnioes]  WITH CHECK ADD  CONSTRAINT [FK_Opnioes_Promotorias] FOREIGN KEY([PromotoriaID])
+REFERENCES [dbo].[Promotorias] ([ID])
+GO
+
 
 --COMMIT TRANSACTION scriptMPSP
 --ROLLBACK TRANSACTION scriptMPSP

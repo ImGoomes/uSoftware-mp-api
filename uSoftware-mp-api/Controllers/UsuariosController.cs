@@ -1,22 +1,20 @@
 ﻿using System;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using usoftware_mp_lib.Model;
+using Microsoft.AspNetCore.Authorization;
 using usoftware_mp_lib.Repository;
+using usoftware_mp_lib.Model;
+using Microsoft.Extensions.Configuration;
 
 namespace uSoftware_mp_api.Controllers
 {
     [Route("api/[controller]")]
-    public class PromotoriasController : Controller
+    public class UsuariosController : Controller
     {
-        private PromotoriasRepository _promotoriasRepository;
-        private OpnioesRepository _opnioesRepository;
+        private UsuariosRepository _usuariosRepository;
 
-        public PromotoriasController(IConfiguration configuration, PromotoriasRepository promotoriasRepository, OpnioesRepository opnioesRepository)
+        public UsuariosController(IConfiguration configuration, UsuariosRepository usuariosRepository)
         {
-            _promotoriasRepository = promotoriasRepository;
-            _opnioesRepository = opnioesRepository;
+            _usuariosRepository = usuariosRepository;
         }
 
         [Authorize("Bearer")]
@@ -25,7 +23,7 @@ namespace uSoftware_mp_api.Controllers
         {
             try
             {
-                return Ok(_promotoriasRepository.SelectAll());
+                return Ok(_usuariosRepository.SelectAll());
             }
             catch (Exception ex)
             {
@@ -42,10 +40,7 @@ namespace uSoftware_mp_api.Controllers
                 if (id <= 0)
                     return BadRequest("Informe o id");
 
-                var promotoria =  _promotoriasRepository.SelectByID(id);
-                promotoria.Opinioes = (System.Collections.Generic.List<Opnioes>)_opnioesRepository.SelectByPromotoriaID(promotoria.ID);
-
-                return Ok(promotoria);
+                return Ok(_usuariosRepository.SelectByID(id));
             }
             catch (Exception ex)
             {
@@ -55,11 +50,11 @@ namespace uSoftware_mp_api.Controllers
 
         [Authorize("Bearer")]
         [HttpPost]
-        public IActionResult Post([FromBody] Promotorias promotorias)
+        public IActionResult Post([FromBody] Usuarios usuario)
         {
             try
             {
-                _promotoriasRepository.Insert(promotorias);
+                _usuariosRepository.Insert(usuario);
                 return Ok();
             }
             catch (Exception ex)
@@ -70,12 +65,12 @@ namespace uSoftware_mp_api.Controllers
 
         [Authorize("Bearer")]
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] Promotorias promotorias, int id)
+        public IActionResult Put([FromBody] Usuarios usuario, int id)
         {
             try
             {
-                if (id > 0 && id == promotorias.ID)
-                    _promotoriasRepository.Update(promotorias);
+                if (id > 0 && id == usuario.ID)
+                    _usuariosRepository.Update(usuario);
                 else
                     return BadRequest("Informe o id");
 
@@ -96,7 +91,7 @@ namespace uSoftware_mp_api.Controllers
                 if (id <= 0)
                     return BadRequest("Informe o id");
 
-                _promotoriasRepository.Delete(id);
+                _usuariosRepository.Delete(id);
                 return Ok();
             }
             catch (Exception ex)
