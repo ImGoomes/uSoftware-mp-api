@@ -11,6 +11,31 @@ namespace usoftware_mp_lib.Repository
     {
         public UsuariosRepository(IConfiguration configuration) : base(configuration) { }
 
+        public void Insert(Usuarios item)
+        {
+            this.Repository.Insert(item, false);
+        }
+
+        public IEnumerable<Usuarios> SelectAll()
+        {
+            return this.Repository.Get();
+        }
+
+        public Usuarios SelectByID(int id)
+        {
+            return this.Repository.GetById(id);
+        }
+
+        public void Update(Usuarios item)
+        {
+            this.Repository.Update(item);
+        }
+
+        public void Delete(int id)
+        {
+            this.Repository.Delete(id);
+        }
+
         public Usuarios LoginUsuario(Usuarios item)
         {
             var customQuery = "SELECT " +
@@ -31,7 +56,6 @@ namespace usoftware_mp_lib.Repository
 
             return result;
         }
-
     }
 }
 
