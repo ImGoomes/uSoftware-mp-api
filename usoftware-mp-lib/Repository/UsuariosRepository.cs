@@ -56,6 +56,23 @@ namespace usoftware_mp_lib.Repository
 
             return result;
         }
+
+        public Usuarios LastUser()
+        {
+            var customQuery = "SELECT TOP 1 " +
+                              "     U.ID, " +
+                              "     U.Nome, " +
+                              "     U.Login, " +
+                              "     U.Senha, " +
+                              "     U.Ativo " +
+                              " FROM Usuarios U (NOLOCK)" +
+                              " ORDER BY 1 DESC";
+
+            var parameters = new Dictionary<string, object>();
+            var result = Repository.Get(customQuery, parameters).SingleOrDefault();
+
+            return result;
+        }
     }
 }
 
