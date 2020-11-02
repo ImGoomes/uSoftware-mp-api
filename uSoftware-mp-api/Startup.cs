@@ -40,6 +40,7 @@ namespace uSoftware_mp_api
             services.AddScoped<CidadaosRepository>();
             services.AddScoped<PromotoresRepository>();
             services.AddScoped<AtendimentosRepository>();
+            services.AddScoped<SituacaoRepository>();
 
             // Configurando o JWT
             #region Jwt

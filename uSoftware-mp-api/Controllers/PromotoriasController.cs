@@ -25,7 +25,13 @@ namespace uSoftware_mp_api.Controllers
         {
             try
             {
-                return Ok(_promotoriasRepository.SelectAll());
+                var promotorias = _promotoriasRepository.SelectList();
+                foreach (var item in promotorias)
+                {
+                    item.Opinioes = (System.Collections.Generic.List<Opnioes>)_opnioesRepository.SelectByPromotoriaID(item.ID);
+
+                }
+                return Ok(promotorias);
             }
             catch (Exception ex)
             {
