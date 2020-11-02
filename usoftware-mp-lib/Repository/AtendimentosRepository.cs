@@ -64,7 +64,7 @@ namespace usoftware_mp_lib.Repository
                              " FROM Atendimentos A (NOLOCK) " +
                              "   INNER JOIN Cidadaos C ON C.ID = A.CidadaoID " +
                              "   INNER JOIN Promotorias PA ON PA.ID = A.PromotoriaID " +
-                             "   INNER JOIN Promotores PR ON PR.ID = A.PromotorID " +
+                             "   LEFT JOIN Promotores PR ON PR.ID = A.PromotorID " +
                              "   INNER JOIN AreasAtuacoes AA ON AA.ID = A.AreaAtuacaoID ";
 
             var parameters = new Dictionary<string, object>();
@@ -101,7 +101,7 @@ namespace usoftware_mp_lib.Repository
                              " FROM Atendimentos A (NOLOCK) " +
                              "   INNER JOIN Cidadaos C ON C.ID = A.CidadaoID " +
                              "   INNER JOIN Promotorias PA ON PA.ID = A.PromotoriaID " +
-                             "   INNER JOIN Promotores PR ON PR.ID = A.PromotorID " +
+                             "   LEFT JOIN Promotores PR ON PR.ID = A.PromotorID " +
                              "   INNER JOIN AreasAtuacoes AA ON AA.ID = A.AreaAtuacaoID " +
                              " WHERE A.ID = @ID ";
 

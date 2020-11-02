@@ -40,5 +40,7 @@ namespace usoftware_mp_lib.Model
         public string PromotoriaCidade { get; set; }
         [IdentityIgnore]
         public string AreaAtuacaoDesc { get; set; }
+        [IdentityIgnore]
+        public List<Situacao> situacoes { get; set; }
     }
 }

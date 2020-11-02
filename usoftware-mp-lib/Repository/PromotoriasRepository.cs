@@ -21,6 +21,32 @@ namespace usoftware_mp_lib.Repository
             return this.Repository.Get();
         }
 
+        public IEnumerable<Promotorias> SelectList()
+        {
+            var customQuery = " SELECT " +
+                             "   P.ID, " +
+                             "   P.Nome, " +
+                             "   P.Rua, " +
+                             "   P.Numero, " +
+                             "   P.Cidade, " +
+                             "   P.Bairro, " +
+                             "   P.CriadoEm, " +
+                             "   P.FaixaAtendimentoID, " +
+                             "   P.AreaAtuacaoID, " +
+                             "   F.HorarioInicio, " +
+                             "   F.HorarioFim, " +
+                             "   A.Descricao Area, " +
+                             "   P.CriadoEm " +
+                             " FROM Promotorias P (NOLOCK) " +
+                             "   INNER JOIN FaixasAtendimento F ON F.ID = P.FaixaAtendimentoID " +
+                             "   INNER JOIN AreasAtuacoes A ON A.ID = P.AreaAtuacaoID ";
+
+            var parameters = new Dictionary<string, object>();
+            var result = Repository.Get(customQuery, parameters);
+
+            return result;
+        }
+
         public Promotorias SelectByID(int id)
         {
             var customQuery = " SELECT " +
